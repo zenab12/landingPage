@@ -90,7 +90,7 @@ for (let link of links){
 function toggleActiveState(){
 
     const options = {
-        threshold:.7
+        threshold:.4
     };
 
     const addActiveClass = function(entries,observer){
