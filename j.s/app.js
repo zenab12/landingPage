@@ -119,7 +119,7 @@ function toggleActiveState(){
     }
 
     const observer = new IntersectionObserver(addActiveClass,options);
-    for(var sec of section){
+    for(let sec of section){
         observer.observe(sec);
     }
 
