@@ -23,7 +23,6 @@ let navMenu = document.querySelector('.navbar__menu');
 let navList = document.querySelector('#navbar__list');
 let documentFragment = document.createDocumentFragment();
 
-let verticalList = document.getElementById('vertical-list');
 let icon = document.querySelector('.icon');
 let linkDropMenu = document.querySelector('.verticalList li a.menu__link');
 let main = document.querySelector('main');
@@ -43,6 +42,15 @@ let i = document.querySelector(`.icon i`);
  * 
 */
 
+let verticalUl = document.createElement('ul');
+navMenu.insertBefore(verticalUl,icon);
+verticalUl.classList.add('vertical-list');
+verticalUl.classList.add('hidden');
+verticalUl.id = "vertical-list";
+
+let verticalList = document.getElementById('vertical-list');
+
+
 // build the nav
 
 for (let sec of section){
@@ -60,6 +68,8 @@ for (let sec of section){
 
 }
 
+
+
 /*
 let lastLi = document.createElement('li');
 let lastLink = document.createElement('a');
@@ -73,24 +83,39 @@ documentFragment.appendChild(lastLi);
 
 navList.appendChild(documentFragment);
 
+for (let sect of section){
+
+    let verticalLi =  document.createElement('li');
+    let verticalanchor = document.createElement('a');
+    let verticalAnchorText = document.createTextNode(sect.id);
+    verticalanchor.href = "#"+sect.id;
+    let verticalsecId = sect.id;
+    verticalanchor.dataset.scroll = verticalsecId;
+    verticalanchor.classList.add('menu__link');
+    verticalanchor.appendChild(verticalAnchorText);
+    verticalLi.appendChild(verticalanchor);
+    documentFragment.appendChild(verticalLi); 
+}
+
+
+verticalList.appendChild(documentFragment);
+
+
 let navItem = document.getElementsByTagName('li');
 let links = document.querySelectorAll('li a');
 //console.log(link);
-
-
-
-// Add class 'active' to section when near top of viewport
+// Add class 'active' to section when near top of viewport;
 
 for (let link of links){
-    navList.firstElementChild.firstElementChild.classList.add('active')
- 
+    navList.firstElementChild.firstElementChild.classList.add('active');
+    verticalList.firstElementChild.firstElementChild.classList.add('active');
 }
-
 
 function toggleActiveState(){
 
     const options = {
-        threshold:.4
+       
+        threshold:1.0
     };
 
     const addActiveClass = function(entries,observer){
