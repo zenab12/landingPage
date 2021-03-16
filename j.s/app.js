@@ -115,15 +115,15 @@ function toggleActiveState(){
 
     const options = {
        
-        threshold:1.0
+    threshold:.1
     };
 
     const addActiveClass = function(entries,observer){
           for (let entry of entries) {
-              if (entry.isIntersecting && entry.intersectionRatio >= 0.2) {
+              if (entry.isIntersecting && entry.intersectionRatio >= .2) {
                   //console.log(entry.target)
-
-                  //syncronizr Active link with section 
+                  //syncronizr Active link with section
+                
                   let currentActiveLink  = document.querySelector('li a.active');
                   if (currentActiveLink){
                       currentActiveLink.classList.remove('active');
@@ -151,7 +151,7 @@ function toggleActiveState(){
 
     }
 
-
+  
 
 window.addEventListener('scroll',toggleActiveState);
 
@@ -194,7 +194,17 @@ function menuToggle() {
     icon.classList.toggle('margin-top');
     main.classList.toggle('margin')
     i.classList.toggle('fa-bars');
-   
+    
   }
 
 
+
+
+  for (li of verticalList.children) {
+    li.addEventListener('click',function(){
+
+        menuToggle();
+        main.classList.toggle('margin')
+        
+    })
+}
